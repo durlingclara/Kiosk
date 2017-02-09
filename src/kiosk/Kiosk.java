@@ -29,31 +29,15 @@ public class Kiosk {
             System.out.println("Type 'Check-in' or 'Redeem,' then push enter.");
             
             String action = reader.next();
-            String act = action.toLowerCase();
-            String phoneNumber;
-            boolean signedUp;
-            
+            String act = action.trim().toLowerCase();
             switch (act) {
                 
                 case "check-in":
-                    phoneNumber = Handlers.ask();
-                    signedUp = Handlers.check(phoneNumber);
-                    if(signedUp){
-                        System.out.println("Thank you for checking in!");
-                    }else{
-                        
-                    }
+                    Handlers.askCheckIn();
                     break;
                     
                 case "redeem":
-                    phoneNumber = Handlers.ask();
-                    signedUp = Handlers.check(phoneNumber);
-                    if(signedUp){
-                        System.out.println("You do not presently have any rewards to redeem.");
-                    }else{
-                        //pNumber.add(phoneNumber);
-                        System.out.println("Please sign up for the rewards program before trying to redeem a reward.");
-                    }
+                    Handlers.askRedeem();
                     break;
                     
                 case "stop":
