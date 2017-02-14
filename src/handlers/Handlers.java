@@ -37,11 +37,13 @@ public abstract class Handlers {
         String phoneNumber  = SCAN.next();
         
         System.out.println("Please enter your birthday (mm/dd)");
-        String bDay = SCAN.next(); // still will not accept empty input or a blank space
+        String bDay = SCAN.next(); 
         String birthday = bDay.trim();
-        if(birthday.equals("")){
-            birthday = "0/0";
-        }
+        
+        // TODO - make it possible for the user to not give input for their birthday
+//        if(birthday.equals("")){
+//            birthday = "0/0";
+//        }
         
         boolean signedUp = Handlers.isMember(phoneNumber);
          
@@ -101,8 +103,8 @@ public abstract class Handlers {
         
         if(signedUp){
             Member member = new Member(phoneNumber);
-            
             int memberNumber = member.getMemberNumber();
+            Rewards.redeem(memberNumber);
         }else{
             System.out.println("Please sign up for the rewards program before trying to redeem a reward.");
         }

@@ -35,9 +35,9 @@ public class Member extends Handlers{
             if(checkIns == 10){
                 message = "Congrats! You've earned a free buffet!";
                 visits.set(this.memberNumber, 0);
-                int freeBuffets = rewardDrinks.get(this.memberNumber);
+                int freeBuffets = rewardBuffets.get(this.memberNumber);
                 freeBuffets++;
-                rewardDrinks.set(this.memberNumber, freeBuffets);
+                rewardBuffets.set(this.memberNumber, freeBuffets);
             }else{
                 message = "You've earned a free drink!";
                 visits.set(this.memberNumber, checkIns);

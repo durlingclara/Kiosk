@@ -1,8 +1,8 @@
  /******************************************************************************
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * Kiosk.java
+ * Clara Durling
  * 
- * and open the template in the editor.
+ * Main runner class for the kiosk.
  ******************************************************************************/
 package kiosk;
 
