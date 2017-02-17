@@ -8,12 +8,14 @@ package kiosk;
 
 import java.util.Scanner;
 import handlers.Handlers;
+import kioskGUIs.CheckInPage;
 
 public class Kiosk {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args){
+        CheckInPage.show();
         Scanner reader = new Scanner(System.in);
         boolean run = true;
         do{
