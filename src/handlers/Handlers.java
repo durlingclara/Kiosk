@@ -113,4 +113,20 @@ public abstract class Handlers {
     public static List<String> getNumbers(){
         return pNumber;
     }
+    
+    public static String getData(){
+        String data = "";
+        int i;
+        int membershipSize = pNumber.size();
+        for(i = 0; i < membershipSize; i++){
+            int memberNumber = i + 1;
+            String phoneNumber = pNumber.get(i);
+            String birthday = birthdays.get(i);
+            String lastCheckIn = days.get(i) + " of the year " + years.get(i);
+            String memberReport = "Member number: " + memberNumber + "; Phone: " + phoneNumber + "; Birthday: " + birthday + "; Last check-in: Day " + lastCheckIn + ";";
+            data = data + "\r" + memberReport;
+        }
+        
+        return data;
+    }
 }
