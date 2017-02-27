@@ -5,7 +5,6 @@
  */
 package kioskGUIs;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,14 +24,15 @@ public class MainProgramPage {
         JButton startKiosk = new JButton("Start-up Kiosk Presentation");
         startKiosk.setMnemonic(KeyEvent.VK_S);
         startKiosk.setBounds(50, 60, 195, 50);
-        startKiosk.addActionListener((ActionEvent e) -> {
+        startKiosk.addActionListener(e -> {
             WelcomePage.show();
         });
         
         JButton getData = new JButton("Get sign-up information"); 
         getData.setMnemonic(KeyEvent.VK_G);
         getData.setBounds(50, 110, 195, 50);
-        getData.addActionListener((ActionEvent e) -> {
+        getData.addActionListener(e -> {
+            runKiosk.dispose();
             System.out.println(Handlers.getData());
         });
         

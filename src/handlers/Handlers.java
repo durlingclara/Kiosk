@@ -31,19 +31,10 @@ public abstract class Handlers {
         return signedUp;
     }
     
-    public static void askCheckIn(){
-        System.out.println("Please enter your ten-digit number.");
-        System.out.println("Please do not use hyphens, parentheses, or spaces.");
-        String phoneNumber  = SCAN.next();
-        
-        System.out.println("Please enter your birthday (mm/dd)");
-        String bDay = SCAN.next(); 
-        String birthday = bDay.trim();
-        
-        // TODO - make it possible for the user to not give input for their birthday
-//        if(birthday.equals("")){
-//            birthday = "0/0";
-//        }
+    public static void askCheckIn(String phoneNumber, String birthday){
+        if(birthday == null){
+            birthday = "0/0";
+        }
         
         boolean signedUp = Handlers.isMember(phoneNumber);
          

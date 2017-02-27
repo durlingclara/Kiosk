@@ -6,6 +6,7 @@
 package kioskGUIs;
 
 
+import handlers.Handlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class CheckInPage{
     
     final JFormattedTextField phoneNumberField = new JFormattedTextField(createFormatter("##########"));
     phoneNumberField.setBounds(5, 25, 85, 25);
+    String phoneNumber = (String)phoneNumberField.getValue();
     
     JTextArea textArea2 = new JTextArea();
     textArea2.setBounds(5, 50, 250, 20);
@@ -36,12 +38,14 @@ public class CheckInPage{
     
     final JFormattedTextField birthdayField = new JFormattedTextField(createFormatter("##/##"));
     birthdayField.setBounds(5, 75, 85, 25);
+    String birthday = (String)birthdayField.getValue();
     
     JButton submitInfo = new JButton("Enter");
         submitInfo.setMnemonic(KeyEvent.VK_S);
         submitInfo.setBounds(50, 100, 100, 25);
         submitInfo.addActionListener((ActionEvent e) -> {
-            //CheckInPage.show();
+            f.dispose();
+            Handlers.askCheckIn(phoneNumber, birthday);
         });
     
     f.add(textArea1);

@@ -8,10 +8,8 @@ package kioskGUIs;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -33,11 +31,18 @@ public class WelcomePage {
         checkIn.setMnemonic(KeyEvent.VK_S);
         checkIn.setBounds(50, 60, 195, 50);
         checkIn.addActionListener((ActionEvent e) -> {
+            f.dispose();
             CheckInPage.show();
         });
     
+    JButton redeem = new JButton("Redeem Rewards");
+        redeem.setMnemonic(KeyEvent.VK_R);
+        redeem.setBounds(50, 120, 195, 50);
+    
+    
     f.add(textArea);
     f.add(checkIn);
+    f.add(redeem);
     
     f.setLayout(null);
     f.setVisible(true);
