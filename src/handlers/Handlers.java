@@ -6,46 +6,41 @@
  ******************************************************************************/
 package handlers;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import kioskGUIs.MainProgramPage;
 
 public abstract class Handlers {
     protected final static Scanner SCAN = new Scanner(System.in);
     
-    // Lists for storing information on those who have signed up.
-    public static List<String> pNumber = new ArrayList();
-    public static List<Integer> visits = new ArrayList();
-    public static List<Integer> years = new ArrayList();
-    public static List<Integer> days = new ArrayList();
-    public static List<String> birthdays = new ArrayList();
-    public static List<Integer> rewardDrinks = new ArrayList();
-    public static List<Integer> rewardBuffets = new ArrayList();
+    // Map to store and retrieve text program members
+    public static Map<String, Member> members = new HashMap();
+    public static Set<String> phoneNumbers = members.keySet();
     
     // Access the actual calendar
     public static Calendar CALENDAR = Calendar.getInstance();
     
     public static Boolean isMember(String phoneNumber){
-        boolean signedUp = pNumber.contains(phoneNumber);
+        boolean signedUp = phoneNumbers.contains(phoneNumber);
         return signedUp;
     }
     
-    public static void askCheckIn(String phoneNumber, String birthday){
+    public static void CheckIn(String phoneNumber, String birthday){
         if(birthday == null){
             birthday = "0/0";
         }
         
         boolean signedUp = Handlers.isMember(phoneNumber);
-         
         if(signedUp){
-            Member member = new Member(phoneNumber);
             
-            int memberNumber = member.getMemberNumber();
+            Member member = members.get(phoneNumber);
             
             String birthdaySaved = member.getBirthday();
             if(!birthday.equals(birthdaySaved) && !birthday.equals("0/0")){
-                birthdays.set(memberNumber, birthday);
+                member.setBirthday( birthday);
             }
             
             Boolean isBirthday = member.isBirthday();
@@ -63,25 +58,18 @@ public abstract class Handlers {
             if(!canCheckIn){
                 System.out.println("Sorry, you already checked in today.");
             }else{
-                String message = member.displayVisits();
+                String message = member.visitsMessage();
                 System.out.println(message);
-                days.set(memberNumber, day);
-                years.set(memberNumber, year);    
+                member.setLastCheckIn(day, year);
             }
             
         }else{
-            
+            Member member = new Member(phoneNumber, birthday);
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
-            days.add(day);
             int year = CALENDAR.get(Calendar.YEAR);
-            years.add(year);
+            member.setLastCheckIn(day, year);
             
-            pNumber.add(phoneNumber);
-            birthdays.add(birthday);
-            visits.add(0);
-            rewardDrinks.add(0);
-            rewardBuffets.add(0);
-            
+            members.put(phoneNumber, member);
             System.out.println("Thank you for signing up!");
         }
     }
@@ -93,29 +81,24 @@ public abstract class Handlers {
         boolean signedUp = Handlers.isMember(phoneNumber);
         
         if(signedUp){
-            Member member = new Member(phoneNumber);
-            int memberNumber = member.getMemberNumber();
-            Rewards.redeem(memberNumber);
+            Member member = members.get(phoneNumber);
+            Rewards.redeem(member);
         }else{
             System.out.println("Please sign up for the rewards program before trying to redeem a reward.");
         }
     }
     
-    public static List<String> getNumbers(){
-        return pNumber;
+    public static Set<String> getNumbers(){
+        return phoneNumbers;
     }
     
     public static String getData(){
         String data = "";
         int i;
-        int membershipSize = pNumber.size();
-        for(i = 0; i < membershipSize; i++){
-            int memberNumber = i + 1;
-            String phoneNumber = pNumber.get(i);
-            String birthday = birthdays.get(i);
-            String lastCheckIn = days.get(i) + " of the year " + years.get(i);
-            String memberReport = "Member number: " + memberNumber + "; Phone: " + phoneNumber + "; Birthday: " + birthday + "; Last check-in: Day " + lastCheckIn + ";";
-            data = data + "\r" + memberReport;
+        
+        for(String key : phoneNumbers){
+            Member memberReport = members.get(key);
+            data = data + "/r" + memberReport.toString();
         }
         
         return data;

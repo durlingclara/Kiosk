@@ -15,12 +15,6 @@ public class Kiosk {
     public static void main(String[] args){
         MainProgramPage.show();
         boolean run = true;
-//        do{
-//            WelcomePage.show();
-//            
-//        }while(run); // End do loop
-        
-        System.out.println("Goodbye!");
         
     } // End main method
     

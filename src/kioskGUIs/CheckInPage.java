@@ -12,50 +12,53 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.JLabel;
 import javax.swing.text.MaskFormatter;
 
 public class CheckInPage{
 
   public static void show() {
 
-    JFrame f = new JFrame("Check-in");
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setSize(250, 250);
-    f.setLocation(300,200);
+    JFrame checkInFrame = new JFrame("Check-in");
+    checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    checkInFrame.setBounds(300, 200, 500, 300);
     
-    JTextArea textArea1 = new JTextArea();
-    textArea1.setBounds(5, 5, 250, 20);
-    textArea1.append("Please enter your 10-digit phone number:");
+    JLabel phoneNumberRequest = new JLabel("Please enter your 10-digit phone number:");
+    phoneNumberRequest.setBounds(5, 5, 250, 20);
     
-    final JFormattedTextField phoneNumberField = new JFormattedTextField(createFormatter("##########"));
-    phoneNumberField.setBounds(5, 25, 85, 25);
-    String phoneNumber = (String)phoneNumberField.getValue();
+    final JFormattedTextField phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
+    phoneNumberField.setBounds(5, 25, 95, 25);
+    // TODO: validate phoneNumber as a valid phoneNumber
     
-    JTextArea textArea2 = new JTextArea();
-    textArea2.setBounds(5, 50, 250, 20);
-    textArea2.append("Please enter your birthday (mm/dd)");
+    JLabel birthdayRequest = new JLabel("Please enter your birthday (mm/dd)");
+    birthdayRequest.setBounds(5, 50, 250, 20);
     
     final JFormattedTextField birthdayField = new JFormattedTextField(createFormatter("##/##"));
     birthdayField.setBounds(5, 75, 85, 25);
-    String birthday = (String)birthdayField.getValue();
     
     JButton submitInfo = new JButton("Enter");
-        submitInfo.setMnemonic(KeyEvent.VK_S);
+        submitInfo.setMnemonic(KeyEvent.VK_ENTER);
         submitInfo.setBounds(50, 100, 100, 25);
         submitInfo.addActionListener((ActionEvent e) -> {
-            f.dispose();
-            Handlers.askCheckIn(phoneNumber, birthday);
+            String phoneNumber = (String)phoneNumberField.getValue();
+            String birthday = (String)birthdayField.getValue();
+            Handlers.CheckIn(phoneNumber, birthday);
+            checkInFrame.dispose();
+            if(phoneNumber.equals("0000000000")){
+                MainProgramPage.show();  
+            }else{
+                WelcomePage.show();
+            }
         });
     
-    f.add(textArea1);
-    f.add(phoneNumberField);
-    f.add(textArea2);
-    f.add(birthdayField);
-    f.add(submitInfo);
+    checkInFrame.add(phoneNumberRequest);
+    checkInFrame.add(phoneNumberField);
+    checkInFrame.add(birthdayRequest);
+    checkInFrame.add(birthdayField);
+    checkInFrame.add(submitInfo);
     
-    f.setLayout(null);
-    f.setVisible(true);
+    checkInFrame.setLayout(null);
+    checkInFrame.setVisible(true);
 
   }
   
