@@ -2,7 +2,8 @@
  * Handlers.java
  * Clara Durling
  * 
- * This class holds information and works with input.
+ * This class handles the input, sometimes delegating to other classes, and
+ * sometimes creating new objects of the Member class, which are put in a Map.
  ******************************************************************************/
 package handlers;
 
@@ -11,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import kioskGUIs.MainProgramPage;
 
 public abstract class Handlers {
     protected final static Scanner SCAN = new Scanner(System.in);
@@ -23,55 +23,62 @@ public abstract class Handlers {
     // Access the actual calendar
     public static Calendar CALENDAR = Calendar.getInstance();
     
+    public static Member getMember(String phoneNumber){
+        Member member = members.get(phoneNumber);
+        return member;
+    }
+    
     public static Boolean isMember(String phoneNumber){
         boolean signedUp = phoneNumbers.contains(phoneNumber);
         return signedUp;
     }
     
-    public static void CheckIn(String phoneNumber, String birthday){
-        if(birthday == null){
+    public static void CheckIn(String phoneNumber, String birthday) {
+
+        if (birthday == null) {
             birthday = "0/0";
         }
-        
+
         boolean signedUp = Handlers.isMember(phoneNumber);
-        if(signedUp){
-            
+        if (signedUp) {
+
             Member member = members.get(phoneNumber);
-            
+
             String birthdaySaved = member.getBirthday();
-            if(!birthday.equals(birthdaySaved) && !birthday.equals("0/0")){
-                member.setBirthday( birthday);
+            if (!birthday.equals(birthdaySaved) && !birthday.equals("0/0")) {
+                member.setBirthday(birthday);
             }
-            
+
             Boolean isBirthday = member.isBirthday();
-            if(isBirthday){
+            if (isBirthday) {
                 System.out.println("Happy Birthday! To celebrate, you can have your buffet for free!");
-            }else{
+            } else {
                 System.out.println("It is not your birthday today.");
             }
-            
+
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
-            
+
             boolean canCheckIn = !member.checkedInToday(day, year);
-            
-            if(!canCheckIn){
+
+            if (!canCheckIn) {
                 System.out.println("Sorry, you already checked in today.");
-            }else{
+            } else {
                 String message = member.visitsMessage();
                 System.out.println(message);
                 member.setLastCheckIn(day, year);
             }
-            
-        }else{
+
+        } else {
             Member member = new Member(phoneNumber, birthday);
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
             member.setLastCheckIn(day, year);
-            
+
             members.put(phoneNumber, member);
             System.out.println("Thank you for signing up!");
         }
+
     }
     
     public static void askRedeem(){
@@ -98,7 +105,7 @@ public abstract class Handlers {
         
         for(String key : phoneNumbers){
             Member memberReport = members.get(key);
-            data = data + "/r" + memberReport.toString();
+            data = data + "\r" + memberReport.toString();
         }
         
         return data;

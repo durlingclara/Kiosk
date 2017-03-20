@@ -6,9 +6,13 @@
  ******************************************************************************/
 package handlers;
 
-public class Rewards extends Handlers{
+import java.util.Scanner;
+import kioskGUIs.WelcomePage;
+
+public class Rewards{
     
     public static void redeem(Member member){
+        Scanner reader = new Scanner(System.in);
         int buffetsEarned = member.getFreeBuffets();
         int drinksEarned = member.getFreeDrinks();
             
@@ -25,16 +29,18 @@ public class Rewards extends Handlers{
             if(buffetsEarned != 0){
                 System.out.println("You have " + buffetsEarned + " free buffets available to redeem.");
                 System.out.print("Please enter the number of buffets you would like to redeem: ");
-                int toRedeem = SCAN.nextInt();
+                int toRedeem = reader.nextInt();
                 Rewards.redeemBuffet(member, toRedeem, buffetsEarned);
             }
             if(drinksEarned != 0){
                 System.out.println("You have " + drinksEarned + " free drinks available to redeem.");
                 System.out.print("Please enter the number of buffets you would like to redeem: ");
-                int toRedeem = SCAN.nextInt();
+                int toRedeem = reader.nextInt();
                 Rewards.redeemBuffet(member, toRedeem, drinksEarned);
             }
         }
+        
+        WelcomePage.show();
     }
     
     public static void redeemDrink(Member member, int toBeRedeemed, int earned){

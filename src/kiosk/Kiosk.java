@@ -14,7 +14,6 @@ public class Kiosk {
      */
     public static void main(String[] args){
         MainProgramPage.show();
-        boolean run = true;
         
     } // End main method
     

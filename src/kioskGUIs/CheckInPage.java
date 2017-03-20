@@ -44,7 +44,7 @@ public class CheckInPage{
             String birthday = (String)birthdayField.getValue();
             Handlers.CheckIn(phoneNumber, birthday);
             checkInFrame.dispose();
-            if(phoneNumber.equals("0000000000")){
+            if(phoneNumber.equals("(000)000-0000")){
                 MainProgramPage.show();  
             }else{
                 WelcomePage.show();

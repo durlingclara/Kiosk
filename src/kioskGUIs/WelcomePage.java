@@ -37,6 +37,10 @@ public class WelcomePage {
         JButton redeem = new JButton("Redeem Rewards");
         redeem.setMnemonic(KeyEvent.VK_R);
         redeem.setBounds(50, 120, 195, 50);
+        redeem.addActionListener((ActionEvent e) -> {
+            Welcome.dispose();
+            Redeem.show();
+        });
 
         Welcome.add(welcomeMessage);
         Welcome.add(checkIn);
