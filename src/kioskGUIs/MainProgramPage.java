@@ -47,7 +47,7 @@ public class MainProgramPage {
         // Action performed when getData button is clicked
         getData.addActionListener(e -> {
             runKiosk.dispose();
-            
+            // TODO: Store member objects
             // Print out the data stored in Handlers.java:
             System.out.println(Handlers.getData());
         });

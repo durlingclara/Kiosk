@@ -27,30 +27,43 @@ public class Redeem {
         redeemLogIn.setSize(250, 250);
         redeemLogIn.setLocation(300,200);
     
+        // TODO: change to JLabel
         JTextArea textArea1 = new JTextArea();
         textArea1.setBounds(5, 5, 250, 20);
         textArea1.append("Please enter your 10-digit phone number:");
     
-        final JFormattedTextField phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
+        
+        final JFormattedTextField phoneNumberField;
+        phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
         phoneNumberField.setBounds(5, 25, 85, 25);
         
         JButton getRewards = new JButton("Enter");
         getRewards.setBounds(5, 50, 85, 25);
+        
         getRewards.addActionListener((ActionEvent e) -> {
+            
+            // Get phone number input:
             String phoneNumber = (String)phoneNumberField.getValue();
+            
+            // Get the member object that has this phoneNumber value
             Member member = Handlers.getMember(phoneNumber);
             redeemLogIn.dispose();
             Rewards.redeem(member);
         });
         
+        
         redeemLogIn.add(textArea1);
         redeemLogIn.add(phoneNumberField);
         redeemLogIn.add(getRewards);
+        
         
         redeemLogIn.setLayout(null);
         redeemLogIn.setVisible(true);
     }
     
+    
+    // I have no idea how or why this method works the way it does; I just got
+    // it from the tutorial on Oracle's website
     protected static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
             try {

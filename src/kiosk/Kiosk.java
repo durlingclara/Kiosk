@@ -15,6 +15,9 @@ public class Kiosk {
     public static void main(String[] args){
         MainProgramPage.show();
         
+        // Retrieve stored Member objects
+        // Run program using stored member objects.
+        
     } // End main method
     
 } // End kiosk class
