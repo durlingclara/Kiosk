@@ -43,6 +43,7 @@ public abstract class Handlers {
         if (signedUp) {
 
             Member member = members.get(phoneNumber);
+            System.out.println(member);
 
             String birthdaySaved = member.getBirthday();
             if (!birthday.equals(birthdaySaved) && !birthday.equals("0/0")) {
@@ -100,6 +101,7 @@ public abstract class Handlers {
     }
     
     public static String getData(){
+        // Only prints the last member
         String data = "";
         int i;
         

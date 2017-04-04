@@ -17,53 +17,64 @@ import javax.swing.text.MaskFormatter;
 
 public class CheckInPage{
 
-  public static void show() {
+    public static void show() {
 
-    JFrame checkInFrame = new JFrame("Check-in");
-    checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    checkInFrame.setBounds(300, 200, 500, 300);
+        JFrame checkInFrame = new JFrame("Check-in");
+        checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        checkInFrame.setBounds(300, 200, 500, 300);
     
-    JLabel phoneNumberRequest = new JLabel("Please enter your 10-digit phone number:");
-    phoneNumberRequest.setBounds(5, 5, 250, 20);
+        JLabel phoneNumberRequest = 
+                new JLabel("Please enter your 10-digit phone number:");
+        phoneNumberRequest.setBounds(5, 5, 250, 20);
     
-    final JFormattedTextField phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
-    phoneNumberField.setBounds(5, 25, 95, 25);
-    // TODO: validate phoneNumber as a valid phoneNumber
+        final JFormattedTextField phoneNumberField = 
+                new JFormattedTextField(createFormatter("(###)###-####"));
+        phoneNumberField.setBounds(5, 25, 95, 25);
     
-    JLabel birthdayRequest = new JLabel("Please enter your birthday (mm/dd)");
-    birthdayRequest.setBounds(5, 50, 250, 20);
+        // TODO: validate phoneNumber as a valid phoneNumber
     
-    final JFormattedTextField birthdayField = new JFormattedTextField(createFormatter("##/##"));
-    birthdayField.setBounds(5, 75, 85, 25);
+        JLabel birthdayRequest = 
+                new JLabel("Please enter your birthday (mm/dd)");
+        birthdayRequest.setBounds(5, 50, 250, 20);
     
-    JButton submitInfo = new JButton("Enter");
-        submitInfo.setMnemonic(KeyEvent.VK_ENTER);
-        submitInfo.setBounds(50, 100, 100, 25);
-        submitInfo.addActionListener((ActionEvent e) -> {
-            String phoneNumber = (String)phoneNumberField.getValue();
-            String birthday = (String)birthdayField.getValue();
-            Handlers.CheckIn(phoneNumber, birthday);
-            checkInFrame.dispose();
-            if(phoneNumber.equals("(000)000-0000")){
-                MainProgramPage.show();  
-            }else{
-                WelcomePage.show();
-            }
-        });
+        final JFormattedTextField birthdayField = 
+                new JFormattedTextField(createFormatter("##/##"));
+        birthdayField.setBounds(5, 75, 85, 25);
     
-    checkInFrame.add(phoneNumberRequest);
-    checkInFrame.add(phoneNumberField);
-    checkInFrame.add(birthdayRequest);
-    checkInFrame.add(birthdayField);
-    checkInFrame.add(submitInfo);
+        JButton submitInfo = new JButton("Enter");
+        
+            // Keyboard shorcut: Alt+ Enter
+            submitInfo.setMnemonic(KeyEvent.VK_ENTER);
+            submitInfo.setBounds(50, 100, 100, 25);
+            submitInfo.addActionListener((ActionEvent e) -> {
+                String phoneNumber = (String)phoneNumberField.getValue();
+                String birthday = (String)birthdayField.getValue();
+                boolean isAdmin = checkForAdmin(phoneNumber, birthday);
+                if(isAdmin){
+                    checkInFrame.dispose();
+                    MainProgramPage.show();
+                }else{
+                    checkInFrame.dispose();
+                    Handlers.CheckIn(phoneNumber, birthday);
+                    WelcomePage.show();
+                }
+            });
     
-    checkInFrame.setLayout(null);
-    checkInFrame.setVisible(true);
+        checkInFrame.add(phoneNumberRequest);
+        checkInFrame.add(phoneNumberField);
+        checkInFrame.add(birthdayRequest);
+        checkInFrame.add(birthdayField);
+        checkInFrame.add(submitInfo);
+    
+        checkInFrame.setLayout(null);
+        checkInFrame.setVisible(true);
 
-  }
+    } // End method show()
+    
+    //**************************************************************************
   
-  protected static MaskFormatter createFormatter(String s) {
-    MaskFormatter formatter = null;
+    protected static MaskFormatter createFormatter(String s) {
+        MaskFormatter formatter = null;
         try {
             formatter = new MaskFormatter(s);
         } catch (java.text.ParseException exc) {
@@ -71,6 +82,14 @@ public class CheckInPage{
             System.exit(-1);
         }
         return formatter;
+    }
+    
+    //**************************************************************************
+  
+    private static boolean checkForAdmin(String phoneNumber, String birthday){
+        Boolean isAdmin = (birthday.equals("77/20") && 
+                phoneNumber.equals("(000)000-0000"));
+        return isAdmin;
     }
 
 }
