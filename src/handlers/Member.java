@@ -101,6 +101,6 @@ public class Member extends Handlers{
 
     @Override
     public String toString() {
-        return "Member: " + "Phone number: " + phoneNumber + ", birthday: " + birthday + ", last check-in: day " + dayLast + " of the year " + yearLast;
+        return "Member: " + "Phone number: " + phoneNumber + ", birthday: " + birthday; //+ ", last check-in: day " + dayLast + " of the year " + yearLast;
     }
 }

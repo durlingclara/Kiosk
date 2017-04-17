@@ -18,7 +18,6 @@ import javax.swing.text.MaskFormatter;
 public class CheckInPage{
 
     public static void show() {
-
         JFrame checkInFrame = new JFrame("Check-in");
         checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         checkInFrame.setBounds(300, 200, 500, 300);
@@ -50,12 +49,12 @@ public class CheckInPage{
                 String phoneNumber = (String)phoneNumberField.getValue();
                 String birthday = (String)birthdayField.getValue();
                 boolean isAdmin = checkForAdmin(phoneNumber, birthday);
+                checkInFrame.dispose();
+                
                 if(isAdmin){
-                    checkInFrame.dispose();
                     MainProgramPage.show();
                 }else{
-                    checkInFrame.dispose();
-                    Handlers.CheckIn(phoneNumber, birthday);
+                    Handlers.checkIn(phoneNumber, birthday);
                     WelcomePage.show();
                 }
             });
@@ -87,6 +86,9 @@ public class CheckInPage{
     //**************************************************************************
   
     private static boolean checkForAdmin(String phoneNumber, String birthday){
+        if(birthday == null){
+            birthday = "0/0";
+        }
         Boolean isAdmin = (birthday.equals("77/20") && 
                 phoneNumber.equals("(000)000-0000"));
         return isAdmin;

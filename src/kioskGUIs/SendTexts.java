@@ -1,20 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+/*******************************************************************************
+ * SendTexts.java
+ * Clara Durling
+ * 
  * and open the template in the editor.
- */
+ ******************************************************************************/
 package kioskGUIs;
 
 import javax.swing.JFrame;
 
 /**
  *
- * @author durlicla000
+ * @author Clara Durling
  */
 public class SendTexts {
     public static void show(){
         JFrame textMaker = new JFrame("Set up Text");
-        //textMaker.setBounds()
+        textMaker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        textMaker.setBounds(0, 0, 400, 400);
         
         textMaker.setLayout(null);
         textMaker.setVisible(true);
