@@ -55,7 +55,7 @@ public class MainProgramPage {
                 runKiosk.dispose();
                 SendTexts.show();
             });
-        
+
         runKiosk.add(sendText);
         runKiosk.add(startKiosk);
         runKiosk.add(getData);

@@ -71,7 +71,7 @@ public class CheckInPage{
     } // End method show()
     
     //**************************************************************************
-  
+
     protected static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
         try {
