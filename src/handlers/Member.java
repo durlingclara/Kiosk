@@ -50,7 +50,7 @@ public class Member extends Handlers{
                 this.visits = 0;
                 this.freeBuffets++;
             }else{
-                message = "You've earned a free drink!";
+                message = "Congrats! You've earned a free drink!";
                 this.freeDrinks++;
             }
         }else{
@@ -71,16 +71,19 @@ public class Member extends Handlers{
         return this.freeDrinks;
     }
     
-    public void setFreeDrinks(int freeDrinks){
-        this.freeDrinks = freeDrinks;
+    public void redeemDrink(){
+        this.freeDrinks--;
     }
     
     public int getFreeBuffets(){
+        if(this.isBirthday()){
+            this.freeBuffets++;
+        }
         return this.freeBuffets;
     }
     
-    public void setFreeBuffets(int freeBuffets){
-        this.freeBuffets = freeBuffets;
+    public void redeemBuffet(){
+        this.freeBuffets--;
     }
     
     public Boolean isBirthday(){

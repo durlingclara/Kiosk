@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import kioskGUIs.Redeem;
+import kioskGUIs.WelcomePage;
 
 public abstract class Handlers {
     protected final static Scanner SCAN = new Scanner(System.in);
@@ -56,10 +58,6 @@ public abstract class Handlers {
             }
 
             Boolean isBirthday = member.isBirthday();
-            if (isBirthday) {
-                System.out.println("Happy Birthday! To celebrate, you can have "
-                        + "your buffet for free!");
-            }
             
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
@@ -67,10 +65,12 @@ public abstract class Handlers {
             boolean canCheckIn = !member.checkedInToday(day, year);
 
             if (!canCheckIn) {
-                System.out.println("Sorry, you already checked in today.");
+                String message = "Sorry, you already checked in today.";
+                WelcomePage.show();
             } else {
                 String message = member.visitsMessage();
-                System.out.println(message);
+                //CheckInMessagePage.showMessage(message, isBirthday);
+                WelcomePage.show();
                 member.setLastCheckIn(day, year);
             }
             
@@ -83,7 +83,9 @@ public abstract class Handlers {
             member.setLastCheckIn(day, year);
 
             members.put(phoneNumber, member);
-            
+            String message = "Thank you for signing up!";
+            //CheckInMessagePage.showMessage(message, false);
+            WelcomePage.show();
         }
         System.out.println();
         System.out.println("Membership report:");
@@ -92,25 +94,17 @@ public abstract class Handlers {
     
     //**************************************************************************
     
-    public static void askRedeem(){
-        System.out.println("Please enter your ten-digit number.");
-        System.out.println("Please do not use hyphens, parentheses, or spaces.");
+    public static void checkRedeem(){
         String phoneNumber  = SCAN.next();
         boolean signedUp = Handlers.isMember(phoneNumber);
         
         if(signedUp){
             Member member = members.get(phoneNumber);
-            Rewards.redeem(member);
+            Redeem.show();
         }else{
             System.out.println("Please sign up for the rewards program before "
                     + "trying to redeem a reward.");
         }
-    }
-    
-    //**************************************************************************
-    
-    public static Set<String> getNumbers(){
-        return phoneNumbers;
     }
     
     //**************************************************************************

@@ -8,8 +8,6 @@ package kioskGUIs;
 
 import handlers.Handlers;
 import handlers.Member;
-import handlers.Rewards;
-import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -24,6 +22,7 @@ public class Redeem {
     public static void show(){
         JFrame redeemLogIn = new JFrame("Redeem Rewards");
         redeemLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        redeemLogIn.setBounds(300, 200, 250, 250);
         redeemLogIn.setSize(250, 250);
         redeemLogIn.setLocation(300,200);
     
@@ -40,7 +39,7 @@ public class Redeem {
         JButton getRewards = new JButton("Enter");
         getRewards.setBounds(5, 50, 85, 25);
         
-        getRewards.addActionListener((ActionEvent e) -> {
+        getRewards.addActionListener(e -> {
             
             // Get phone number input:
             String phoneNumber = (String)phoneNumberField.getValue();
@@ -48,7 +47,7 @@ public class Redeem {
             // Get the member object that has this phoneNumber value
             Member member = Handlers.getMember(phoneNumber);
             redeemLogIn.dispose();
-            Rewards.redeem(member);
+            ShowRewards.show(member);
         });
         
         

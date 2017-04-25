@@ -16,7 +16,7 @@ public class SendTexts {
     public static void show(){
         JFrame textMaker = new JFrame("Set up Text");
         textMaker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        textMaker.setBounds(0, 0, 400, 400);
+        textMaker.setBounds(300, 200, 400, 400);
         
         textMaker.setLayout(null);
         textMaker.setVisible(true);

@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+ * CheckInPage.java
+ * Clara Durling
+ * 
+ * This class runs the JFrame for the check-in page for the kiosk
+ ******************************************************************************/
 package kioskGUIs;
 
 
@@ -55,8 +56,8 @@ public class CheckInPage{
                     MainProgramPage.show();
                 }else{
                     Handlers.checkIn(phoneNumber, birthday);
-                    WelcomePage.show();
                 }
+                
             });
     
         checkInFrame.add(phoneNumberRequest);

@@ -21,7 +21,7 @@ public class MainProgramPage {
     public static void show() {
         JFrame runKiosk = new JFrame("PPC Kiosk Runner");
         runKiosk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        runKiosk.setBounds(0, 0, 500, 300);
+        runKiosk.setBounds(300, 200, 500, 300);
         
         JButton startKiosk = new JButton("Start-up Kiosk Presentation");
             // Keyboard shortcut: Alt+S
