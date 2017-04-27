@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Redeem.java
- * Clara Durling
+ * Clara L. Durling
  * 
  * This class holds the first frame for the Redeem Rewards pathway.
  ******************************************************************************/
@@ -8,37 +8,37 @@ package kioskGUIs;
 
 import handlers.Handlers;
 import handlers.Member;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.JLabel;
 import javax.swing.text.MaskFormatter;
 
 /**
  *
- * @author Clara Durling
+ * @author Clara L. Durling
  */
 public class Redeem {
+
+    /**
+     *
+     */
     public static void show(){
         JFrame redeemLogIn = new JFrame("Redeem Rewards");
         redeemLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        redeemLogIn.setBounds(300, 200, 250, 250);
-        redeemLogIn.setSize(250, 250);
-        redeemLogIn.setLocation(300,200);
+        redeemLogIn.setBounds(300, 200, 300, 250);
     
-        // TODO: change to JLabel
-        JTextArea textArea1 = new JTextArea();
-        textArea1.setBounds(5, 5, 250, 20);
-        textArea1.append("Please enter your 10-digit phone number:");
+        final JLabel pNumberPrompt = new JLabel("Please enter your 10-digit phone number:");
+        pNumberPrompt.setBounds(5, 5, 300, 20);
     
-        
         final JFormattedTextField phoneNumberField;
         phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
-        phoneNumberField.setBounds(5, 25, 85, 25);
+        phoneNumberField.setBounds(5, 30, 85, 25);
         
         JButton getRewards = new JButton("Enter");
-        getRewards.setBounds(5, 50, 85, 25);
-        
+        getRewards.setBounds(98, 60, 85, 25);
+        getRewards.setMnemonic(KeyEvent.VK_ENTER);
         getRewards.addActionListener(e -> {
             
             // Get phone number input:
@@ -51,7 +51,7 @@ public class Redeem {
         });
         
         
-        redeemLogIn.add(textArea1);
+        redeemLogIn.add(pNumberPrompt);
         redeemLogIn.add(phoneNumberField);
         redeemLogIn.add(getRewards);
         
@@ -63,6 +63,12 @@ public class Redeem {
     
     // I have no idea how or why this method works the way it does; I just got
     // it from the tutorial on Oracle's website
+
+    /**
+     *
+     * @param s - the format
+     * @return MaskFormatter - the ability to force the format
+     */
     protected static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
             try {

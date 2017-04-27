@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SendTexts.java
- * Clara Durling
+ * Clara L. Durling
  * 
  * and open the template in the editor.
  ******************************************************************************/
@@ -10,9 +10,13 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Clara Durling
+ * @author Clara L. Durling
  */
 public class SendTexts {
+
+    /**
+     * not complete
+     */
     public static void show(){
         JFrame textMaker = new JFrame("Set up Text");
         textMaker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

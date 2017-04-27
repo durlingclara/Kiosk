@@ -1,6 +1,6 @@
 /*******************************************************************************
  * CheckInPage.java
- * Clara Durling
+ * Clara L. Durling
  * 
  * This class runs the JFrame for the check-in page for the kiosk
  ******************************************************************************/
@@ -16,8 +16,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.text.MaskFormatter;
 
+/**
+ *
+ * @author Clara L. Durling
+ */
 public class CheckInPage{
 
+    /**
+     *
+     */
     public static void show() {
         JFrame checkInFrame = new JFrame("Check-in");
         checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,6 +79,12 @@ public class CheckInPage{
     } // End method show()
     
     //**************************************************************************
+
+    /**
+     *
+     * @param s - format
+     * @return
+     */
 
     protected static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;

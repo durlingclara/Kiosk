@@ -1,6 +1,6 @@
 /*******************************************************************************
  * CheckInMessagePage.java
- * Clara Durling
+ * Clara L. Durling
  * 
  * and open the template in the editor.
  ******************************************************************************/
@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 
 /**
  *
- * @author Clara Durling
+ * @author Clara L. Durling
  */
 public class CheckInMessagePage {
     

@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*******************************************************************************
+ * WelcomePage.java
+ * Clara L. Durling
+ * 
+ * This class holds the JFrame for the main customer page, or the "Welcome Page"
+ ******************************************************************************/
 package kioskGUIs;
 
 import java.awt.event.ActionEvent;
@@ -13,10 +14,13 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author durlicla000
+ * @author Clara L. Durling
  */
 public class WelcomePage {
 
+    /**
+     *
+     */
     public static void show() {
 
         JFrame Welcome = new JFrame("Pizza Pie Cafe Text Program");

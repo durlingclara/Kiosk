@@ -1,6 +1,6 @@
 /*******************************************************************************
  * MainProgramPage.java
- * Clara Durling
+ * Clara L. Durling
  * 
  * This frame should only be accessible to administrators.
  ******************************************************************************/
@@ -14,10 +14,13 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Clara Durling
+ * @author Clara L. Durling
  */
 public class MainProgramPage {
     
+    /**
+     *
+     */
     public static void show() {
         JFrame runKiosk = new JFrame("PPC Kiosk Runner");
         runKiosk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
