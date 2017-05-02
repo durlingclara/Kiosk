@@ -5,7 +5,6 @@
  */
 package kioskGUIs;
 
-
 import handlers.Handlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -21,55 +20,54 @@ public class CheckInPage{
         JFrame checkInFrame = new JFrame("Check-in");
         checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         checkInFrame.setBounds(300, 200, 500, 300);
-    
+
         JLabel phoneNumberRequest = 
                 new JLabel("Please enter your 10-digit phone number:");
         phoneNumberRequest.setBounds(5, 5, 250, 20);
-    
+
         final JFormattedTextField phoneNumberField = 
                 new JFormattedTextField(createFormatter("(###)###-####"));
         phoneNumberField.setBounds(5, 25, 95, 25);
-    
+
         // TODO: validate phoneNumber as a valid phoneNumber
-    
-        JLabel birthdayRequest = 
-                new JLabel("Please enter your birthday (mm/dd)");
+        JLabel birthdayRequest
+                = new JLabel("Please enter your birthday (mm/dd)");
         birthdayRequest.setBounds(5, 50, 250, 20);
-    
+
         final JFormattedTextField birthdayField = 
                 new JFormattedTextField(createFormatter("##/##"));
         birthdayField.setBounds(5, 75, 85, 25);
-    
+
         JButton submitInfo = new JButton("Enter");
-        
-            // Keyboard shorcut: Alt+ Enter
-            submitInfo.setMnemonic(KeyEvent.VK_ENTER);
-            submitInfo.setBounds(50, 100, 100, 25);
-            submitInfo.addActionListener((ActionEvent e) -> {
+
+        // Keyboard shorcut: Alt+ Enter
+        submitInfo.setMnemonic(KeyEvent.VK_ENTER);
+        submitInfo.setBounds(50, 100, 100, 25);
+        submitInfo.addActionListener((ActionEvent e) -> {
                 String phoneNumber = (String)phoneNumberField.getValue();
                 String birthday = (String)birthdayField.getValue();
-                boolean isAdmin = checkForAdmin(phoneNumber, birthday);
-                checkInFrame.dispose();
-                
+            boolean isAdmin = checkForAdmin(phoneNumber, birthday);
+            checkInFrame.dispose();
+
                 if(isAdmin){
-                    MainProgramPage.show();
+                MainProgramPage.show();
                 }else{
-                    Handlers.checkIn(phoneNumber, birthday);
-                    WelcomePage.show();
-                }
-            });
-    
+                Handlers.checkIn(phoneNumber, birthday);
+                WelcomePage.show();
+            }
+        });
+
         checkInFrame.add(phoneNumberRequest);
         checkInFrame.add(phoneNumberField);
         checkInFrame.add(birthdayRequest);
         checkInFrame.add(birthdayField);
         checkInFrame.add(submitInfo);
-    
+
         checkInFrame.setLayout(null);
         checkInFrame.setVisible(true);
 
     } // End method show()
-    
+
     //**************************************************************************
   
     protected static MaskFormatter createFormatter(String s) {
@@ -82,7 +80,7 @@ public class CheckInPage{
         }
         return formatter;
     }
-    
+
     //**************************************************************************
   
     private static boolean checkForAdmin(String phoneNumber, String birthday){

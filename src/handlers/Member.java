@@ -10,6 +10,7 @@ package handlers;
 import java.util.Calendar;
 
 public class Member extends Handlers{
+    
     private final String phoneNumber;
     private String birthday;
     private int visits;
@@ -17,6 +18,8 @@ public class Member extends Handlers{
     private int freeDrinks;
     private int dayLast;
     private int yearLast;
+    
+    //**************************************************************************
     
     public Member(String phoneNumber, String birthday){
         this.phoneNumber = phoneNumber;
@@ -26,18 +29,25 @@ public class Member extends Handlers{
         this.freeBuffets = 0;
     }
     
+    //**************************************************************************
     
     public Boolean checkedInToday(int dayNew, int yearNew) {
         return ((this.dayLast == dayNew) && (this.yearLast == yearNew));  
     }
     
+    //**************************************************************************
+    
     public String getBirthday(){
         return this.birthday;
     }
     
-    void setBirthday(String birthday) {
+    //**************************************************************************
+    
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+    
+    //**************************************************************************
     
     public String visitsMessage(){ 
         String message;
@@ -67,21 +77,31 @@ public class Member extends Handlers{
         return message;
     }
     
+    //**************************************************************************
+    
     public int getFreeDrinks(){
         return this.freeDrinks;
     }
+    
+    //**************************************************************************
     
     public void setFreeDrinks(int freeDrinks){
         this.freeDrinks = freeDrinks;
     }
     
+    //**************************************************************************
+    
     public int getFreeBuffets(){
         return this.freeBuffets;
     }
     
+    //**************************************************************************
+    
     public void setFreeBuffets(int freeBuffets){
         this.freeBuffets = freeBuffets;
     }
+    
+    //**************************************************************************
     
     public Boolean isBirthday(){
         String[] splitBirthday = this.birthday.split("/");
@@ -94,13 +114,20 @@ public class Member extends Handlers{
         return daySaved == day && monthSaved == month;
     }
     
+    //**************************************************************************
+    
     public void setLastCheckIn(int day, int year){
         this.dayLast = day;
         this.yearLast = year;
     }
+    
+    //**************************************************************************
 
     @Override
     public String toString() {
-        return "Member: " + "Phone number: " + phoneNumber + ", birthday: " + birthday; //+ ", last check-in: day " + dayLast + " of the year " + yearLast;
+        return "Member: " + "Phone number: " + phoneNumber + ", birthday: " + 
+                birthday  + ", last check-in: day " + dayLast + " of the year " 
+                + yearLast;
     }
-}
+    
+} // End class Member
