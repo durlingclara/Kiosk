@@ -87,9 +87,6 @@ public abstract class Handlers {
             //CheckInMessagePage.showMessage(message, false);
             WelcomePage.show();
         }
-        System.out.println();
-        System.out.println("Membership report:");
-        System.out.println(getData());
     } // End method checkIn
     
     //**************************************************************************
@@ -110,21 +107,17 @@ public abstract class Handlers {
     //**************************************************************************
     
     public static String getData(){
-        /* When a line says data = data + [something], it adds the something onto
-         * String data, but the next time I add something to String data, the
-         * previously added information disappears.  I'm not sure why.
-         */
         String data = "";
         int i;
         int membershipSize = phoneNumbers.size();
-        data = data + "Membership size: " + membershipSize;
-        System.out.println(data);
+        data = "Membership size: " + membershipSize;
+        StringBuilder s = new StringBuilder();
+        s.append(data).append("\n");
         for(String key : phoneNumbers){
             Member memberReport = members.get(key);
-            data = data + "\r" + memberReport.toString();
-            System.out.println(data);
+            s.append(memberReport.toString()).append("\n");
         }
+        return s.toString();
         
-        return data;
-    }
+    } // End getData()
 }

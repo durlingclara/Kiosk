@@ -6,7 +6,6 @@
  ******************************************************************************/
 package kioskGUIs;
 
-
 import handlers.Handlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -31,19 +30,18 @@ public class CheckInPage{
         JFrame checkInFrame = new JFrame("Check-in");
         checkInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         checkInFrame.setBounds(300, 200, 500, 300);
-    
+
         JLabel phoneNumberRequest = 
                 new JLabel("Please enter your 10-digit phone number:");
         phoneNumberRequest.setBounds(5, 5, 250, 20);
-    
+
         final JFormattedTextField phoneNumberField = 
                 new JFormattedTextField(createFormatter("(###)###-####"));
         phoneNumberField.setBounds(5, 25, 95, 25);
-    
+
         // TODO: validate phoneNumber as a valid phoneNumber
-    
-        JLabel birthdayRequest = 
-                new JLabel("Please enter your birthday:");
+        JLabel birthdayRequest
+                = new JLabel("Please enter your birthday (mm/dd)");
         birthdayRequest.setBounds(5, 50, 250, 20);
         
         JSpinner birthdayMonth = new JSpinner(new SpinnerNumberModel(0,0,12,1));
@@ -56,7 +54,7 @@ public class CheckInPage{
         final JFormattedTextField birthdayField = 
                 new JFormattedTextField(createFormatter("##/##"));
         birthdayField.setBounds(5, 75, 85, 25);
-    
+
         JButton submitInfo = new JButton("Enter");
         
             // Keyboard shortcut: Alt+ Enter
@@ -71,25 +69,25 @@ public class CheckInPage{
                 checkInFrame.dispose();
                 
                 if(isAdmin){
-                    MainProgramPage.show();
+                MainProgramPage.show();
                 }else{
-                    Handlers.checkIn(phoneNumber, birthday);
-                }
-                
-            });
-    
+                Handlers.checkIn(phoneNumber, birthday);
+                WelcomePage.show();
+            }
+        });
+
         checkInFrame.add(phoneNumberRequest);
         checkInFrame.add(phoneNumberField);
         checkInFrame.add(birthdayRequest);
         checkInFrame.add(birthdayMonth);
         checkInFrame.add(birthdayDay);
         checkInFrame.add(submitInfo);
-    
+
         checkInFrame.setLayout(null);
         checkInFrame.setVisible(true);
 
     } // End method show()
-    
+
     //**************************************************************************
 
     /**
@@ -108,7 +106,7 @@ public class CheckInPage{
         }
         return formatter;
     }
-    
+
     //**************************************************************************
   
     private static boolean checkForAdmin(String phoneNumber, String birthday){
