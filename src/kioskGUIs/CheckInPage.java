@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -41,21 +43,30 @@ public class CheckInPage{
         // TODO: validate phoneNumber as a valid phoneNumber
     
         JLabel birthdayRequest = 
-                new JLabel("Please enter your birthday (mm/dd)");
+                new JLabel("Please enter your birthday:");
         birthdayRequest.setBounds(5, 50, 250, 20);
-    
+        
+        JSpinner birthdayMonth = new JSpinner(new SpinnerNumberModel(0,0,12,1));
+        birthdayMonth.setBounds(5, 75, 35, 20);
+        
+        JSpinner birthdayDay = new JSpinner(new SpinnerNumberModel(0,0,12,1));
+        birthdayDay.setBounds(45, 75, 35, 20);
+        
+        
         final JFormattedTextField birthdayField = 
                 new JFormattedTextField(createFormatter("##/##"));
         birthdayField.setBounds(5, 75, 85, 25);
     
         JButton submitInfo = new JButton("Enter");
         
-            // Keyboard shorcut: Alt+ Enter
+            // Keyboard shortcut: Alt+ Enter
             submitInfo.setMnemonic(KeyEvent.VK_ENTER);
             submitInfo.setBounds(50, 100, 100, 25);
             submitInfo.addActionListener((ActionEvent e) -> {
+                int month = (Integer)birthdayMonth.getValue();
+                int day = (Integer)birthdayDay.getValue();
                 String phoneNumber = (String)phoneNumberField.getValue();
-                String birthday = (String)birthdayField.getValue();
+                String birthday = convertBirthday(month, day);
                 boolean isAdmin = checkForAdmin(phoneNumber, birthday);
                 checkInFrame.dispose();
                 
@@ -70,7 +81,8 @@ public class CheckInPage{
         checkInFrame.add(phoneNumberRequest);
         checkInFrame.add(phoneNumberField);
         checkInFrame.add(birthdayRequest);
-        checkInFrame.add(birthdayField);
+        checkInFrame.add(birthdayMonth);
+        checkInFrame.add(birthdayDay);
         checkInFrame.add(submitInfo);
     
         checkInFrame.setLayout(null);
@@ -86,7 +98,7 @@ public class CheckInPage{
      * @return
      */
 
-    protected static MaskFormatter createFormatter(String s) {
+    private static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
         try {
             formatter = new MaskFormatter(s);
@@ -103,9 +115,31 @@ public class CheckInPage{
         if(birthday == null){
             birthday = "0/0";
         }
-        Boolean isAdmin = (birthday.equals("77/20") && 
+        Boolean isAdmin = (birthday.equals("00/30") && 
                 phoneNumber.equals("(000)000-0000"));
         return isAdmin;
     }
+    
+    //**************************************************************************
+    
+    private static String convertBirthday(int month, int day){
+        String birthday;
+        
+        if(month == 0){
+            return "00/00";
+        } else if(month < 10){
+            birthday = "0" + month;
+        }else{
+            birthday = "" + month;
+        }
+        
+        if(day < 10){
+            birthday += "/0" + day;
+        }else{
+            birthday += "/" + day;
+        }
+        
+        return birthday;
+    } // End private Static convertBirthday
 
-}
+} // End public class CheckInPage
