@@ -22,6 +22,9 @@ public class MainProgramPage {
      *
      */
     public static void show() {
+        /*TODO
+        * Make it look nicer
+         */
         JFrame runKiosk = new JFrame("PPC Kiosk Runner");
         runKiosk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         runKiosk.setBounds(300, 200, 500, 300);
