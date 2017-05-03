@@ -76,6 +76,12 @@ public class Member extends Handlers{
     }
     
     public int getFreeBuffets(){
+        /* TODO:
+        For getting a free birthday buffet
+        * Make it so it doesn't have to be their actual birthday, just close 
+          (like 3-4 days)
+        * Require that they not have redeemed a birthday buffet this year.
+        */
         if(this.isBirthday()){
             this.freeBuffets++;
         }
