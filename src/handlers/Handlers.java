@@ -44,10 +44,6 @@ public abstract class Handlers {
     
     public static void checkIn(String phoneNumber, String birthday) {
         
-        if (birthday == null) {
-            birthday = "0/0";
-        }
-
         boolean signedUp = isMember(phoneNumber);
         if (signedUp) {
             Member member = members.get(phoneNumber);
@@ -66,11 +62,9 @@ public abstract class Handlers {
 
             if (!canCheckIn) {
                 String message = "Sorry, you already checked in today.";
-                WelcomePage.show();
             } else {
                 String message = member.visitsMessage();
                 //CheckInMessagePage.showMessage(message, isBirthday);
-                WelcomePage.show();
                 member.setLastCheckIn(day, year);
             }
             
@@ -85,7 +79,6 @@ public abstract class Handlers {
             members.put(phoneNumber, member);
             String message = "Thank you for signing up!";
             //CheckInMessagePage.showMessage(message, false);
-            WelcomePage.show();
         }
     } // End method checkIn
     

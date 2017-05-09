@@ -23,9 +23,9 @@ public class WelcomePage {
      */
     public static void show() {
 
-        JFrame Welcome = new JFrame("Pizza Pie Cafe Text Program");
-        Welcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Welcome.setBounds(300, 200, 500, 300);
+        JFrame welcome = new JFrame("Pizza Pie Cafe Text Program");
+        welcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        welcome.setBounds(300, 200, 500, 300);
 
         JLabel welcomeMessage = new JLabel("Welcome to Pizza Pie Cafe.");
         welcomeMessage.setBounds(5, 5, 250, 20);
@@ -34,7 +34,7 @@ public class WelcomePage {
         checkIn.setMnemonic(KeyEvent.VK_S);
         checkIn.setBounds(50, 60, 195, 50);
         checkIn.addActionListener((ActionEvent e) -> {
-            Welcome.dispose();
+            welcome.dispose();
             CheckInPage.show();
         });
 
@@ -42,16 +42,16 @@ public class WelcomePage {
         redeem.setMnemonic(KeyEvent.VK_R);
         redeem.setBounds(50, 120, 195, 50);
         redeem.addActionListener((ActionEvent e) -> {
-            Welcome.dispose();
+            welcome.dispose();
             Redeem.show();
         });
 
-        Welcome.add(welcomeMessage);
-        Welcome.add(checkIn);
-        Welcome.add(redeem);
+        welcome.add(welcomeMessage);
+        welcome.add(checkIn);
+        welcome.add(redeem);
 
-        Welcome.setLayout(null);
-        Welcome.setVisible(true);
+        welcome.setLayout(null);
+        welcome.setVisible(true);
 
     }
 

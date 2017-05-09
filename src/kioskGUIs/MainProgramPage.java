@@ -38,7 +38,7 @@ public class MainProgramPage {
             startKiosk.addActionListener(e -> {
                 JOptionPane.showMessageDialog(runKiosk,
                     "To return, check-in with all zeroes for the phone number "
-                            + "and 0/30 as the birthday",
+                            + "and --/31 as the birthday",
                     "Closing Administrative Page",
                     JOptionPane.INFORMATION_MESSAGE);
                 runKiosk.dispose();

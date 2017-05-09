@@ -7,7 +7,6 @@
 package kioskGUIs;
 
 import handlers.Member;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -29,13 +27,15 @@ public class ShowRewards {
      */
     public static void show(Member member) {
         JFrame rewardFrame = new JFrame("Redeem a Reward");
-        int ySize = 20;
+        int ySize = 50;
         rewardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = (JPanel) rewardFrame.getContentPane();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         if (member == null) {
-
+            rewardFrame.dispose();
+            WelcomePage.show();
         } else {
 
             int freeBuffets = member.getFreeBuffets();
@@ -49,27 +49,14 @@ public class ShowRewards {
             int freeDrinks = member.getFreeDrinks();
             for (int i = 0; i < freeDrinks; i++) {
                 String reward = "Drink";
-                JPanel rewardPane = new JPanel();
-                rewardPane.setLayout(new BoxLayout(rewardPane, BoxLayout.X_AXIS));
-                rewardPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-                JLabel rewardExplanation = new JLabel(reward);
-                rewardPane.add(rewardExplanation);
-
-                JButton redeem = new JButton("Redeem");
-                redeem.addActionListener((ActionEvent e) -> {
-                    member.redeemDrink();
-                    rewardFrame.dispose();
-                    WelcomePage.show();
-                });
-                rewardPane.add(redeem);
+                JPanel rewardPane = new RewardPane(reward, rewardFrame, member);
                 mainPanel.add(rewardPane);
                 ySize += 90;
             }
 
             if (freeBuffets == 0 && freeDrinks == 0) {
-                JTextArea noReward = new JTextArea();
-                noReward.append("You have no rewards to redeem.");
+                JLabel noReward = new JLabel("You have no rewards to redeem.");
+                ySize += 90;
                 mainPanel.add(noReward);
             }
 

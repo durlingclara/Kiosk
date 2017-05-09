@@ -42,14 +42,14 @@ public class RewardPane extends JPanel{
        
         JButton redeem = new JButton("Redeem");
         redeem.addActionListener((ActionEvent e) -> {
-                if(reward.equals("Buffet")){
-                    member.redeemBuffet(); // Record under the member object
-                }else{                      // that the reward was redeemed.
-                    member.redeemDrink();
-                }
-                rewardFrame.dispose();
-                WelcomePage.show(); // Return to customer starter page
-            });
+            if(reward.equals("Buffet")){
+                member.redeemBuffet(); // Record under the member object
+            }else{                      // that the reward was redeemed.
+                member.redeemDrink();
+            }
+            rewardFrame.dispose();
+            WelcomePage.show(); // Return to customer starter page
+        });
         
         rewardPane.add(rewardExplanation);
         rewardPane.add(redeem);

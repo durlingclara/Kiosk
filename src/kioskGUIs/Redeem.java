@@ -29,25 +29,31 @@ public class Redeem {
         redeemLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         redeemLogIn.setBounds(300, 200, 300, 250);
     
-        final JLabel pNumberPrompt = new JLabel("Please enter your 10-digit phone number:");
+        final JLabel pNumberPrompt = 
+                new JLabel("Please enter your 10-digit phone number:");
         pNumberPrompt.setBounds(5, 5, 300, 20);
     
         final JFormattedTextField phoneNumberField;
-        phoneNumberField = new JFormattedTextField(createFormatter("(###)###-####"));
+        phoneNumberField = 
+                new JFormattedTextField(createFormatter("(###)###-####"));
         phoneNumberField.setBounds(5, 30, 85, 25);
         
         JButton getRewards = new JButton("Enter");
         getRewards.setBounds(98, 60, 85, 25);
         getRewards.setMnemonic(KeyEvent.VK_ENTER);
+        
         getRewards.addActionListener(e -> {
-            
             // Get phone number input:
             String phoneNumber = (String)phoneNumberField.getValue();
-            
-            // Get the member object that has this phoneNumber value
-            Member member = Handlers.getMember(phoneNumber);
-            redeemLogIn.dispose();
-            ShowRewards.show(member);
+            if(phoneNumber == null){
+                redeemLogIn.dispose();
+                WelcomePage.show();
+            } else {
+               // Get the member object that has this phoneNumber value
+                Member member = Handlers.getMember(phoneNumber);
+                redeemLogIn.dispose();
+                ShowRewards.show(member); 
+            }
         });
         
         
@@ -55,14 +61,11 @@ public class Redeem {
         redeemLogIn.add(phoneNumberField);
         redeemLogIn.add(getRewards);
         
-        
         redeemLogIn.setLayout(null);
         redeemLogIn.setVisible(true);
     }
     
-    
-    // I have no idea how or why this method works the way it does; I just got
-    // it from the tutorial on Oracle's website
+    //**************************************************************************
 
     /**
      *
