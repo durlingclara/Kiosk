@@ -7,13 +7,16 @@
  ******************************************************************************/
 package handlers;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Member extends Handlers{
     
     private final String phoneNumber;
     private String birthday;
     private int visits;
+    private List<Reward> rewards;
     private int freeBuffets;
     private int freeDrinks;
     private int dayLast;
@@ -25,8 +28,7 @@ public class Member extends Handlers{
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.visits = 0;
-        this.freeDrinks = 0;
-        this.freeBuffets = 0;
+        this.rewards = new ArrayList();
     }
     
     //**************************************************************************
@@ -79,33 +81,26 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
-    public int getFreeDrinks(){
-        return this.freeDrinks;
+    public List<Reward> getRewards(){
+        return this.rewards;
     }
     
     //**************************************************************************
     
-    public void redeemDrink(){
-        this.freeDrinks--;
+    public void earnedNewReward(String deal){
+        
     }
     
     //**************************************************************************
     
-    public int getFreeBuffets(){
-        /* TODO:
-        For getting a free birthday buffet
-        * Make it so it doesn't have to be their actual birthday, just close 
-          (like 3-4 days)
-        * Require that they not have redeemed a birthday buffet this year.
-        */
-        if(this.isBirthday()){
-            this.freeBuffets++;
-        }
-        return this.freeBuffets;
+    public void redeemReward(Reward reward){
+        
     }
     
-    public void redeemBuffet(){
-        this.freeBuffets--;
+    //**************************************************************************
+    
+    public Boolean hasRewards(){
+        return this.rewards.isEmpty();
     }
     
     //**************************************************************************

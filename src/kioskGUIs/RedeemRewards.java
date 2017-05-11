@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  *
  * @author Clara L. Durling
  */
-public class ShowRewards {
+public abstract class RedeemRewards {
 
     /**
      *
@@ -29,15 +29,16 @@ public class ShowRewards {
         JFrame rewardFrame = new JFrame("Redeem a Reward");
         int ySize = 50;
         rewardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         JPanel mainPanel = (JPanel) rewardFrame.getContentPane();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         if (member == null) {
-            rewardFrame.dispose();
-            WelcomePage.show();
+            JLabel notSignedUp = new JLabel("Please sign up first.");
+            ySize += 90;
+            mainPanel.add(notSignedUp);    
         } else {
-
             int freeBuffets = member.getFreeBuffets();
             for (int i = 0; i < freeBuffets; i++) {
                 String reward = "Buffet";
@@ -59,16 +60,17 @@ public class ShowRewards {
                 ySize += 90;
                 mainPanel.add(noReward);
             }
+            
+        } // End if(member == null), else
+        
+        JButton mainMenu = new JButton("Main Menu");
+        mainMenu.addActionListener((ActionEvent e) -> {
+            rewardFrame.dispose();
+            WelcomePage.show();
+        });
 
-            JButton mainMenu = new JButton("Main Menu");
-            mainMenu.addActionListener((ActionEvent e) -> {
-                rewardFrame.dispose();
-                WelcomePage.show();
-            });
-
-            mainPanel.add(mainMenu);
-        }
-
+        mainPanel.add(mainMenu);
+        
         rewardFrame.setBounds(300, 200, 400, ySize);
         rewardFrame.setVisible(true);
     }

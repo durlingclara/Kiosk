@@ -79,17 +79,6 @@ public class HandlersTest {
     }
 
     /**
-     * Test of askRedeem method, of class Handlers.
-     */
-    @Test
-    public void testAskRedeem() {
-        System.out.println("askRedeem");
-        Handlers.checkRedeem();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getData method, of class Handlers.
      */
     @Test
@@ -97,6 +86,20 @@ public class HandlersTest {
         System.out.println("getData");
         String expResult = "";
         String result = Handlers.getData();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of checkRedeem method, of class Handlers.
+     */
+    @Test
+    public void testCheckRedeem() {
+        System.out.println("checkRedeem");
+        String phoneNumber = "";
+        Member expResult = null;
+        Member result = Handlers.checkRedeem(phoneNumber);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

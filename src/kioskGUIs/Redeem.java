@@ -25,19 +25,23 @@ public class Redeem {
      *
      */
     public static void show(){
+        // create JFrame
         JFrame redeemLogIn = new JFrame("Redeem Rewards");
         redeemLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         redeemLogIn.setBounds(300, 200, 300, 250);
-    
+        
+        // phone Number prompt
         final JLabel pNumberPrompt = 
                 new JLabel("Please enter your 10-digit phone number:");
         pNumberPrompt.setBounds(5, 5, 300, 20);
-    
+        
+        // input box for phone Number
         final JFormattedTextField phoneNumberField;
         phoneNumberField = 
                 new JFormattedTextField(createFormatter("(###)###-####"));
         phoneNumberField.setBounds(5, 30, 85, 25);
         
+        // submission button
         JButton getRewards = new JButton("Enter");
         getRewards.setBounds(98, 60, 85, 25);
         getRewards.setMnemonic(KeyEvent.VK_ENTER);
@@ -50,9 +54,9 @@ public class Redeem {
                 WelcomePage.show();
             } else {
                // Get the member object that has this phoneNumber value
-                Member member = Handlers.getMember(phoneNumber);
+                Member member = Handlers.checkRedeem(phoneNumber);
                 redeemLogIn.dispose();
-                ShowRewards.show(member); 
+                RedeemRewards.show(member); 
             }
         });
         

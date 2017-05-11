@@ -13,8 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import kioskGUIs.Redeem;
-import kioskGUIs.WelcomePage;
 
 public abstract class Handlers {
     protected final static Scanner SCAN = new Scanner(System.in);
@@ -84,16 +82,14 @@ public abstract class Handlers {
     
     //**************************************************************************
     
-    public static void checkRedeem(){
-        String phoneNumber  = SCAN.next();
+    public static Member checkRedeem(String phoneNumber){
         boolean signedUp = Handlers.isMember(phoneNumber);
         
         if(signedUp){
             Member member = members.get(phoneNumber);
-            Redeem.show();
+            return member;
         }else{
-            System.out.println("Please sign up for the rewards program before "
-                    + "trying to redeem a reward.");
+            return null;
         }
     }
     
