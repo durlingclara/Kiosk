@@ -7,7 +7,9 @@
 package kioskGUIs;
 
 import handlers.Member;
+import handlers.Reward;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -39,28 +41,19 @@ public abstract class RedeemRewards {
             ySize += 90;
             mainPanel.add(notSignedUp);    
         } else {
-            int freeBuffets = member.getFreeBuffets();
-            for (int i = 0; i < freeBuffets; i++) {
-                String reward = "Buffet";
+            List<Reward> rewards = member.getRewards();
+            for (int i = 0; i < rewards.size()-1; i++) {
+                Reward reward = rewards.get(i);
                 JPanel rewardPane = new RewardPane(reward, rewardFrame, member);
                 mainPanel.add(rewardPane);
                 ySize += 90;
             }
-
-            int freeDrinks = member.getFreeDrinks();
-            for (int i = 0; i < freeDrinks; i++) {
-                String reward = "Drink";
-                JPanel rewardPane = new RewardPane(reward, rewardFrame, member);
-                mainPanel.add(rewardPane);
-                ySize += 90;
-            }
-
-            if (freeBuffets == 0 && freeDrinks == 0) {
+            
+            if (member.hasRewards() == false) {
                 JLabel noReward = new JLabel("You have no rewards to redeem.");
                 ySize += 90;
                 mainPanel.add(noReward);
             }
-            
         } // End if(member == null), else
         
         JButton mainMenu = new JButton("Main Menu");

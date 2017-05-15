@@ -87,14 +87,15 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
-    public void earnedNewReward(String deal){
-        
+    public void earnedNewReward(String deal, String date){
+        Reward reward = new Reward(deal, date);
+        this.rewards.add(reward);
     }
     
     //**************************************************************************
     
     public void redeemReward(Reward reward){
-        
+        this.rewards.remove(reward);
     }
     
     //**************************************************************************

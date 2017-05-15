@@ -9,8 +9,8 @@ package kioskGUIs;
 
 
 import handlers.Member;
+import handlers.Reward;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -31,27 +31,24 @@ public class RewardPane extends JPanel{
      * @param rewardFrame - the JFrame containing the JPanel
      * @param member - the person trying to redeem a reward
      */
-    public RewardPane(String reward, JFrame rewardFrame, Member member){
+    public RewardPane(Reward reward, JFrame rewardFrame, Member member){
         JPanel rewardPane = new JPanel();
         rewardPane.setLayout(new BoxLayout(rewardPane, BoxLayout.X_AXIS));
-        
         // Add a thin black border around each reward panel
         rewardPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
        
-        JLabel rewardExplanation = new JLabel("  " + reward + "    ");
+        JLabel rewardExplanation = new JLabel("  " + reward.getDeal() + "    ");
+        JLabel rewardDate = new JLabel(reward.getDate());
        
         JButton redeem = new JButton("Redeem");
-        redeem.addActionListener((ActionEvent e) -> {
-            if(reward.equals("Buffet")){
-                member.redeemBuffet(); // Record under the member object
-            }else{                      // that the reward was redeemed.
-                member.redeemDrink();
-            }
+        redeem.addActionListener(e -> {
+            member.redeemReward(reward); // Record under the member object that the reward was redeemed.
             rewardFrame.dispose();
             WelcomePage.show(); // Return to customer starter page
         });
         
         rewardPane.add(rewardExplanation);
+        rewardPane.add(rewardDate);
         rewardPane.add(redeem);
         rewardPane.setVisible(true);
     }
