@@ -43,6 +43,7 @@ public abstract class Handlers {
     public static void checkIn(String phoneNumber, String birthday) {
         
         boolean signedUp = isMember(phoneNumber);
+        
         if (signedUp) {
             Member member = members.get(phoneNumber);
 
@@ -73,11 +74,13 @@ public abstract class Handlers {
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
             member.setLastCheckIn(day, year);
+            member.earnedNewReward("$5.99 Buffet");
 
             members.put(phoneNumber, member);
             String message = "Thank you for signing up!";
             //CheckInMessagePage.showMessage(message, false);
         }
+        
     } // End method checkIn
     
     //**************************************************************************

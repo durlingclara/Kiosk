@@ -17,8 +17,6 @@ public class Member extends Handlers{
     private String birthday;
     private int visits;
     private List<Reward> rewards;
-    private int freeBuffets;
-    private int freeDrinks;
     private int dayLast;
     private int yearLast;
     
@@ -60,10 +58,10 @@ public class Member extends Handlers{
             if(this.visits == 10){
                 message = "Congrats! You've earned a free buffet!";
                 this.visits = 0;
-                this.freeBuffets++;
+                this.earnedNewReward("Free Buffet");
             }else{
                 message = "Congrats! You've earned a free drink!";
-                this.freeDrinks++;
+                this.earnedNewReward("Free Drink");
             }
         }else{
             int checkInShow;
@@ -73,7 +71,12 @@ public class Member extends Handlers{
             }else{
                 checkInShow = checkInsLeft;
             }
-            message = "You have " + checkInShow + " visits remaining.";
+            
+            if(checkInShow == 1){
+                message = "You have 1 visit remaining.";
+            }else{
+                message = "You have " + checkInShow + " visits remaining.";
+            }
         }
         
         return message;
@@ -88,13 +91,18 @@ public class Member extends Handlers{
     //**************************************************************************
     
     public void earnedNewReward(String deal){
+        int month = CALENDAR.get(Calendar.MONTH) + 1;
+        int day = CALENDAR.get(Calendar.DAY_OF_MONTH);
+        String dateEarned = month + "/" + day;
         
+        Reward reward = new Reward(dateEarned, deal);
+        rewards.add(reward);
     }
     
     //**************************************************************************
     
     public void redeemReward(Reward reward){
-        
+        rewards.remove(reward);
     }
     
     //**************************************************************************
