@@ -58,7 +58,7 @@ public class Redeem {
                 redeemLogIn.dispose();
                 RedeemRewards.show(member); 
             }
-        });
+        }); //end actions for getRewards button 
         
         
         redeemLogIn.add(pNumberPrompt);
@@ -67,7 +67,8 @@ public class Redeem {
         
         redeemLogIn.setLayout(null);
         redeemLogIn.setVisible(true);
-    }
+        
+    } // End method show()
     
     //**************************************************************************
 
@@ -85,5 +86,6 @@ public class Redeem {
                 System.exit(-1);
             }
             return formatter;
-    }
-}
+    } // End method createFormatter(String s)
+
+} //End class Redeem

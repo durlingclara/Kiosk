@@ -38,11 +38,11 @@ public class CheckInPage{
 
         JLabel phoneNumberRequest = 
                 new JLabel("Please enter your 10-digit phone number:");
-        phoneNumberRequest.setBounds(5, 5, 250, 20);
+        phoneNumberRequest.setBounds(5, 5, 400, 20);
 
         final JFormattedTextField phoneNumberField = 
                 new JFormattedTextField(createFormatter("(###)###-####"));
-        phoneNumberField.setBounds(5, 25, 95, 25);
+        phoneNumberField.setBounds(5, 25, 110, 25);
 
         // TODO: validate phoneNumber as a valid phoneNumber
         
