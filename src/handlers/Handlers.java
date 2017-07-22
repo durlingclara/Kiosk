@@ -10,6 +10,7 @@ package handlers;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -48,11 +49,11 @@ public abstract class Handlers {
             Member member = members.get(phoneNumber);
 
             String birthdaySaved = member.getBirthday();
-            if (!birthday.equals(birthdaySaved) && !birthday.equals("0/0")) {
+            if (!birthday.equals(birthdaySaved) && birthdaySaved.equals("0/0")) {
                 member.setBirthday(birthday);
             }
 
-            Boolean isBirthday = member.isBirthday();
+            
             
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
@@ -62,7 +63,11 @@ public abstract class Handlers {
             if (!canCheckIn) {
                 String message = "Sorry, you already checked in today.";
             } else {
+                Boolean isBirthday = member.isBirthday();
                 String message = member.visitsMessage();
+                if(isBirthday){
+                    member.earnedNewReward("Free Buffet");
+                }
                 //CheckInMessagePage.showMessage(message, isBirthday);
                 member.setLastCheckIn(day, year);
             }
@@ -75,6 +80,11 @@ public abstract class Handlers {
             int year = CALENDAR.get(Calendar.YEAR);
             member.setLastCheckIn(day, year);
             member.earnedNewReward("$5.99 Buffet");
+            member.earnedNewReward("Free Drink");
+            
+            if(member.isBirthday()){
+                member.earnedNewReward("Free Buffet");
+            }
 
             members.put(phoneNumber, member);
             String message = "Thank you for signing up!";
