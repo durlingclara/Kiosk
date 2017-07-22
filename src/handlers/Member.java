@@ -49,6 +49,26 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    public Boolean isBirthday(){
+        String[] splitBirthday = this.birthday.split("/");
+        
+        int monthSaved = Integer.parseInt(splitBirthday[0]);
+        int daySaved = Integer.parseInt(splitBirthday[1]);
+        int month = CALENDAR.get(Calendar.MONTH) + 1;
+        int day = CALENDAR.get(Calendar.DAY_OF_MONTH);
+        
+        boolean wasBornToday = (daySaved == day) && (monthSaved == month);
+        if(wasBornToday){
+            System.out.println("Happy Birthday!");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    //**************************************************************************
+    
     public String visitsMessage(){ 
         String message;
         
@@ -108,20 +128,11 @@ public class Member extends Handlers{
     //**************************************************************************
     
     public Boolean hasRewards(){
-        return this.rewards.isEmpty();
-    }
-    
-    //**************************************************************************
-    
-    public Boolean isBirthday(){
-        String[] splitBirthday = this.birthday.split("/");
-        
-        int monthSaved = Integer.parseInt(splitBirthday[0].trim());
-        int daySaved = Integer.parseInt(splitBirthday[1].trim());
-        int month = CALENDAR.get(Calendar.MONTH) + 1;
-        int day = CALENDAR.get(Calendar.DAY_OF_MONTH);
-        
-        return daySaved == day && monthSaved == month;
+        if(this.rewards.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
     
     //**************************************************************************
@@ -135,7 +146,7 @@ public class Member extends Handlers{
 
     @Override
     public String toString() {
-        return "Member: " + "Phone number: " + phoneNumber + ", birthday: " + 
+        return "Member:  " + "Phone number: " + phoneNumber + ", birthday: " + 
                 birthday  + ", last check-in: day " + dayLast + " of the year " 
                 + yearLast;
     }

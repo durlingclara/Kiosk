@@ -24,7 +24,7 @@ import javax.swing.JPanel;
  * @author Clara L. Durling
  */
 
-public class RewardPane extends JPanel{
+public class RewardPane extends JPanel{ // RewardPanes are a type of JPanel
     
     /**
      *
@@ -33,9 +33,10 @@ public class RewardPane extends JPanel{
      * @param member - the person trying to redeem a reward
      */
     public RewardPane(Reward reward, JFrame rewardFrame, Member member){
+        
         JPanel rewardPane = new JPanel();
         rewardPane.setLayout(new BoxLayout(rewardPane, BoxLayout.X_AXIS));
-        rewardPane.setSize(200,90);
+        //rewardPane.setSize(200, 90);
         
         // Add a thin black border around each reward panel
         rewardPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -43,6 +44,7 @@ public class RewardPane extends JPanel{
         JLabel rewardLabel = new JLabel("  " + reward.getDeal() + "    ");
         JLabel rewardDate = new JLabel(" " + reward.getDate() + " ");
        
+        
         JButton redeem = new JButton("Redeem");
         redeem.addActionListener((ActionEvent e) -> {
             member.redeemReward(reward);

@@ -26,4 +26,11 @@ public class Reward {
     public String getDeal(){
         return this.deal;
     }
+
+    @Override
+    public String toString() {
+        return "This member received on " + date + " a " + deal + '.';
+    }
+    
+    
 }

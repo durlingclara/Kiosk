@@ -32,6 +32,8 @@ public class CheckInMessagePage {
         messageDisplay.setBounds(310, 230, 480, 15);
         messageDisplay.append(message);
         
+        JButton next = new JButton("Next");
+        
         if(birthday){
             JTextArea birthdayDisplay = new JTextArea();
             birthdayDisplay.append("Happy Birthday! You get your buffet for free!");
@@ -47,6 +49,7 @@ public class CheckInMessagePage {
                 WelcomePage.show();
             });
         
+        messageFrame.add(next);
         messageFrame.add(mainMenu);
         messageFrame.add(messageDisplay);
         

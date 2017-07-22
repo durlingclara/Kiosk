@@ -54,6 +54,7 @@ public class Redeem {
                 WelcomePage.show();
             } else {
                // Get the member object that has this phoneNumber value
+               // Receives a null member if the person is not signed up
                 Member member = Handlers.checkRedeem(phoneNumber);
                 redeemLogIn.dispose();
                 RedeemRewards.show(member); 
