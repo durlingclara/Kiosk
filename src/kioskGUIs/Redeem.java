@@ -1,8 +1,9 @@
 /*******************************************************************************
- * Redeem.java
- * Clara L. Durling
+ * File: Redeem.java
+ * Author: Clara L Durling
  * 
  * This class holds the first frame for the Redeem Rewards pathway.
+ * The second class for this pathway is RedeemRewards.java
  ******************************************************************************/
 package kioskGUIs;
 
@@ -22,10 +23,11 @@ import javax.swing.text.MaskFormatter;
 public class Redeem {
 
     /**
-     *
+     * 
      */
-    public static void show(){
-        // create JFrame
+    public static void show() {
+
+        // create JFrame 
         JFrame redeemLogIn = new JFrame("Redeem Rewards");
         redeemLogIn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         redeemLogIn.setBounds(300, 200, 300, 250);
@@ -59,7 +61,7 @@ public class Redeem {
                 redeemLogIn.dispose();
                 RedeemRewards.show(member); 
             }
-        }); //end actions for getRewards button 
+        }); // End actions for getRewards button 
         
         
         redeemLogIn.add(pNumberPrompt);
@@ -77,6 +79,8 @@ public class Redeem {
      *
      * @param s - the format
      * @return MaskFormatter - the ability to force the format
+     * 
+     * credit for this method goes to Oracle
      */
     protected static MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;

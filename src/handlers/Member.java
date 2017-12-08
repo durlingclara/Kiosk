@@ -17,6 +17,7 @@ public class Member extends Handlers{
     private String birthday;
     private int visits;
     private List<Reward> rewards;
+    private List<Reward> redeemed;
     private int dayLast;
     private int yearLast;
     
@@ -123,16 +124,13 @@ public class Member extends Handlers{
     
     public void redeemReward(Reward reward){
         rewards.remove(reward);
+        redeemed.add(reward);
     }
     
     //**************************************************************************
     
     public Boolean hasRewards(){
-        if(this.rewards.isEmpty()){
-            return false;
-        }else{
-            return true;
-        }
+        return !this.rewards.isEmpty();
     }
     
     //**************************************************************************

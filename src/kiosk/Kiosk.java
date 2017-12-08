@@ -1,4 +1,4 @@
- /******************************************************************************
+/******************************************************************************
  * Kiosk.java
  * Clara Durling
  * 
@@ -13,11 +13,12 @@ public class Kiosk {
      * @param args the command line arguments
      */
     public static void main(String[] args){
+        /* TODO:
+         * Retrieve stored Member objects
+         * Run program using stored member objects
+         */
+        
         MainProgramPage.show();
-        
-        // Retrieve stored Member objects
-        // Run program using stored member objects.
-        
     } // End main method
     
 } // End kiosk class

@@ -10,7 +10,6 @@ package handlers;
 
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -52,8 +51,6 @@ public abstract class Handlers {
             if (!birthday.equals(birthdaySaved) && birthdaySaved.equals("0/0")) {
                 member.setBirthday(birthday);
             }
-
-            
             
             int day = CALENDAR.get(Calendar.DAY_OF_YEAR);
             int year = CALENDAR.get(Calendar.YEAR);
