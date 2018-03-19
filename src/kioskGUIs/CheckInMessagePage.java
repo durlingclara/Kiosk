@@ -2,7 +2,7 @@
  * CheckInMessagePage.java
  * Clara L. Durling
  * 
- * and open the template in the editor.
+ * This is the class that displays a message to the user after checking in.
  ******************************************************************************/
 package kioskGUIs;
 
@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
-
 
 /**
  *
@@ -55,6 +53,6 @@ public class CheckInMessagePage {
         
         messageFrame.setLayout(null);
         messageFrame.setVisible(true);
-    }
+    } // End psvm Show Message
     
-}
+} // End class CheckInMessagePage

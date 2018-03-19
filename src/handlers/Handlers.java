@@ -14,6 +14,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * 
+ * @author Clara Durling
+ */
 public abstract class Handlers {
     protected final static Scanner SCAN = new Scanner(System.in);
     
@@ -26,6 +30,11 @@ public abstract class Handlers {
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param phoneNumber
+     * @return 
+     */
     public static Member getMember(String phoneNumber){
         Member member = members.get(phoneNumber);
         return member;
@@ -33,6 +42,11 @@ public abstract class Handlers {
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param phoneNumber
+     * @return 
+     */
     public static Boolean isMember(String phoneNumber){
         boolean signedUp = phoneNumbers.contains(phoneNumber);
         return signedUp;
@@ -40,6 +54,11 @@ public abstract class Handlers {
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param phoneNumber
+     * @param birthday 
+     */
     public static void checkIn(String phoneNumber, String birthday) {
         
         boolean signedUp = isMember(phoneNumber);
@@ -92,6 +111,11 @@ public abstract class Handlers {
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param phoneNumber
+     * @return 
+     */
     public static Member checkRedeem(String phoneNumber){
         boolean signedUp = Handlers.isMember(phoneNumber);
         
@@ -105,6 +129,10 @@ public abstract class Handlers {
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public static String getData(){
         String data = "";
         int i;
@@ -119,4 +147,5 @@ public abstract class Handlers {
         return s.toString();
         
     } // End getData()
-}
+    
+} // End class Handlers

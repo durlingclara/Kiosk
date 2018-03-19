@@ -19,18 +19,23 @@ public class Reward {
         this.deal = deal;
     }
     
+    //**************************************************************************
+    
     public String getDate(){
         return this.date;
     }
     
+    //**************************************************************************
+    
     public String getDeal(){
         return this.deal;
     }
+    
+    //**************************************************************************
 
     @Override
     public String toString() {
         return "This member received on " + date + " a " + deal + '.';
     }
-    
     
 }

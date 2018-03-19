@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * 
+ * @author Clara Durling 
+ */
 public class Member extends Handlers{
     
     private final String phoneNumber;
@@ -23,6 +27,11 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param phoneNumber
+     * @param birthday 
+     */
     public Member(String phoneNumber, String birthday){
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
@@ -32,24 +41,42 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param dayNew
+     * @param yearNew
+     * @return 
+     */
     public Boolean checkedInToday(int dayNew, int yearNew) {
         return ((this.dayLast == dayNew) && (this.yearLast == yearNew));  
     }
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public String getBirthday(){
         return this.birthday;
     }
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param birthday 
+     */
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public Boolean isBirthday(){
         String[] splitBirthday = this.birthday.split("/");
         
@@ -70,6 +97,10 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public String visitsMessage(){ 
         String message;
         
@@ -105,12 +136,20 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public List<Reward> getRewards(){
         return this.rewards;
     }
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param deal 
+     */
     public void earnedNewReward(String deal){
         int month = CALENDAR.get(Calendar.MONTH) + 1;
         int day = CALENDAR.get(Calendar.DAY_OF_MONTH);
@@ -122,6 +161,10 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param reward 
+     */
     public void redeemReward(Reward reward){
         rewards.remove(reward);
         redeemed.add(reward);
@@ -129,12 +172,21 @@ public class Member extends Handlers{
     
     //**************************************************************************
     
+    /**
+     * 
+     * @return 
+     */
     public Boolean hasRewards(){
         return !this.rewards.isEmpty();
     }
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param day
+     * @param year 
+     */
     public void setLastCheckIn(int day, int year){
         this.dayLast = day;
         this.yearLast = year;
@@ -142,6 +194,10 @@ public class Member extends Handlers{
     
     //**************************************************************************
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         return "Member:  " + "Phone number: " + phoneNumber + ", birthday: " + 

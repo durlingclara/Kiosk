@@ -106,7 +106,7 @@ public class CheckInPage{
     /**
      *
      * @param s - format
-     * @return
+     * @return MaskFormatter formatter
      */
 
     private static MaskFormatter createFormatter(String s) {
@@ -118,19 +118,31 @@ public class CheckInPage{
             System.exit(-1);
         }
         return formatter;
-    }
+    } // End private Static MaskFromatter createFormatter
 
     //**************************************************************************
-  
+    
+    /**
+     * 
+     * @param phoneNumber
+     * @param birthday
+     * @return boolean isAdmin
+     */
     private static boolean checkForAdmin(String phoneNumber, String birthday){
         
         Boolean isAdmin = (birthday.equals("00/00") && 
                 phoneNumber.equals("(000)000-0000"));
         return isAdmin;
-    }
+    } // end private static boolean checkForAdmin
     
     //**************************************************************************
     
+    /**
+     * 
+     * @param month
+     * @param day
+     * @return String birthday
+     */
     private static String convertBirthday(String month, int day){
         String birthday;
         
